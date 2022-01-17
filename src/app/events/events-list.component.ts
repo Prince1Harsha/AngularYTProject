@@ -1,4 +1,7 @@
-import { Component } from '@angular/core';
+import { Component } from '@angular/core'
+import { ActivatedRoute } from '@angular/router'
+import { IEvent } from './shared'
+import { EventService } from './shared/event.service'
 
 @Component({
     selector: 'events-list',
@@ -17,68 +20,12 @@ import { Component } from '@angular/core';
 
 export class EventsListComponent
 {
-events = 
-[
-    {
-      id: 1,
-      name: 'Pharma Tech Expo (PTE)',
-      date: '10/10/2020',
-      time: '9:00 am',
-      price: 5000,
-      location: {
-        address: 'Parade Ground',
-        city: 'Chandigarh',
-        country: 'India'
-      },
-    },
-    {
-      id: 2,
-      name: 'Agile India Conference(AIC)',
-      date: '11/10/2020',
-      time: '10:00 am',
-      price: 10000.00,  
-      onlineUrl: 'https://2020.agileindia.org',
-      location: {
-          address: 'ITC Gardenia',
-          city: 'Bengaluru',
-          country: 'India'
-      }, 
-    },
-    {
-      id: 3,
-      name: 'DigiMarCon India',
-      date: '08/10/2020',
-      time: '10:00 am',
-      price: 4500,
-      location: {
-        address: 'Hyatt Regency',
-        city: 'Gurgaon',
-        country: 'India'
-      }, 
-    },
-    {
-      id: 4,
-      name: 'Game Developer Conf(IGDC)',
-      date: '31/10/2020',
-      time: '8:00 am',
-      price: 800.00,
-      location: {
-        address: 'International Convention Centre',
-        city: 'Hyderabad',
-        country: 'India'
-      },    
-    },
-    {
-      id: 5,
-      name: 'Pune Photo Fair',
-      date: '11/10/2020',
-      time: '9:00 am',
-      price: 6000.00,
-      location: {
-        address: 'Pandit Farms',
-        city: 'Pune',
-        country: 'India'
-      },
-    }
-]
+  events : IEvent[]
+  constructor(private eventService : EventService, private route:ActivatedRoute){
+
+  }
+
+  ngOnInit(){
+   this.events = this.route.snapshot.data['events']
+  } 
 }
